@@ -1,0 +1,12 @@
+.detail-slider .swiper-scrollbar {
+  background: #23272f;
+  height: 7px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.swiper-scrollbar-drag {
+  background: #7a7a76;
+  border-radius: 8px;
+  transition: background 0.2s;
+}

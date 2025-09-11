@@ -1,0 +1,16 @@
+.my-button-next,
+.my-button-prev {
+  padding: 6px;
+}
+
+.swiper-trending-movie .swiper-slide-active {
+  flex-basis: 13%;
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
+
+.trending-movie .swiper-wrapper {
+  align-items: flex-end;
+}
+
+
