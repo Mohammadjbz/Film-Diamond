@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import getCredits from "../../services/apiCredits";
+import getCredits from "../services/apiCredits";
 import { useParams } from "react-router-dom";
-import { BASE_IMAGE_URL } from "../../utils/constants";
-import FullPageSpinner from "../../Ui/FullPageSpinner";
+import { BASE_IMAGE_URL } from "../utils/constants";
+import FullPageSpinner from "../Ui/FullPageSpinner";
 
-function Cast() {
+function CastPage() {
   const { movieSeriesId } = useParams();
 
   const {
@@ -57,4 +57,4 @@ function Cast() {
     );
 }
 
-export default Cast;
+export default CastPage;
