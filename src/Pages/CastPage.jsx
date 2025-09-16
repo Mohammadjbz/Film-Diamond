@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { BASE_IMAGE_URL } from "../utils/constants";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 
-function CastPage() {
+function CastPage({type}) {
   const { movieSeriesId } = useParams();
 
   const {
@@ -13,8 +13,8 @@ function CastPage() {
     isSuccess: isSuccessCreditsData,
     isError: isErrorCreditsData,
   } = useQuery({
-    queryKey: ["creditsMovie"],
-    queryFn: () => getCredits(movieSeriesId, "movie"),
+    queryKey: ["creditsMovieSeries"],
+    queryFn: () => getCredits(movieSeriesId, type),
   });
 
   console.log(movieSeriesId);

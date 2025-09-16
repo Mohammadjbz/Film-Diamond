@@ -44,11 +44,11 @@ function App() {
             />
             <Route
               path="/movie/detail/:movieSeriesId/cast"
-              element={<CastPage />}
+              element={<CastPage type="movie" />}
             />
             <Route
               path="/series/detail/:movieSeriesId/cast"
-              element={<CastPage/>}
+              element={<CastPage type="tv" />}
             />
           </Route>
         </Routes>

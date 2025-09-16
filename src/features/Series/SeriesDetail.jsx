@@ -203,7 +203,7 @@ function SeriesDetail() {
             ))}
 
             <SwiperSlide>
-              <Link className="flex gap-2 mt-[120px] justify-center items-end">
+              <Link to="cast" className="flex gap-2 mt-[120px] justify-center items-end">
                 <span className="text-white">View More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +248,7 @@ function SeriesDetail() {
             ))}
 
             <SwiperSlide>
-              <Link className="flex gap-2 mt-[120px] justify-center items-end">
+              <Link  className="flex gap-2 mt-[120px] justify-center items-end">
                 <span className="text-white">View More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
