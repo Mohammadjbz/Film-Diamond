@@ -8,6 +8,7 @@ import SeriesPage from "./Pages/SeriesPage";
 import DetailPage from "./Pages/DetailPage";
 import MovieTrailerPage from "./Pages/MovieTrailerPage";
 import CastPage from "./Pages/CastPage";
+import SearchPage from "./Pages/SearchPage";
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,6 +51,7 @@ function App() {
               path="/series/detail/:movieSeriesId/cast"
               element={<CastPage type="tv" />}
             />
+            <Route path="search" element={<SearchPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>
