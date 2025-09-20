@@ -25,7 +25,7 @@ function MovieDetail() {
     isSuccess: isSuccessMovieData,
     isError: isErrorMovieData,
   } = useQuery({
-    queryKey: ["detailMovie"],
+    queryKey: ["detailMovie", movieSeriesId],
     queryFn: () => getDetail(movieSeriesId, "movie"),
   });
 
@@ -35,7 +35,7 @@ function MovieDetail() {
     isSuccess: isSuccessCreditsData,
     isError: isErrorCreditsData,
   } = useQuery({
-    queryKey: ["creditsMovie"],
+    queryKey: ["creditsMovie", movieSeriesId],
     queryFn: () => getCredits(movieSeriesId, "movie"),
   });
 
@@ -45,7 +45,7 @@ function MovieDetail() {
     isSuccess: isSuccessSimilarData,
     isError: isErrorSimilarData,
   } = useQuery({
-    queryKey: ["similarMovie"],
+    queryKey: ["similarMovie", movieSeriesId],
     queryFn: () => getSimilar(movieSeriesId, "movie"),
   });
 
@@ -120,7 +120,9 @@ function MovieDetail() {
               </div>
 
               <div className="flex items-center gap-3 mt-5">
-                <span className="text-white text-[1.5rem] font-bold">User Score:</span>
+                <span className="text-white text-[1.5rem] font-bold">
+                  User Score:
+                </span>
                 <div
                   style={{ background: getColor(movieData.vote_average) }}
                   className="rounded-[50%] flex items-center justify-center relative w-[60px] h-[60px] "
@@ -165,8 +167,10 @@ function MovieDetail() {
 
               <div className="text-white italic mt-3">{movieData.tagline}</div>
 
-              <div className="text-[white] mt-5">
-                <h3 className="font-bold text-[1.1rem]">Overview</h3>
+              <h3 className="font-bold text-[1.1rem] text-[white] mt-5">
+                Overview
+              </h3>
+              <div className="text-[white] mt-2 h-70 overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
                 <span>{movieData.overview}</span>
               </div>
             </div>
@@ -186,7 +190,7 @@ function MovieDetail() {
           >
             {creditsData.cast?.slice(0, 6).map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="flex flex-col mb-10">
+                <Link to={`/person/${item.id}`} className="flex flex-col mb-10">
                   <img
                     src={`${BASE_IMAGE_URL}${item.profile_path}`}
                     className="w-full rounded-[0.4rem]"
@@ -197,12 +201,15 @@ function MovieDetail() {
                   <span className="text-gray-500 ml-[10%] mt-1">
                     {item.character}
                   </span>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
 
             <SwiperSlide>
-              <Link to="cast" className="flex gap-2 mt-[120px] justify-center items-end">
+              <Link
+                to="cast"
+                className="flex gap-2 mt-[120px] justify-center items-end"
+              >
                 <span className="text-white">View More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +238,10 @@ function MovieDetail() {
           >
             {similarData?.slice(0, 6).map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="flex flex-col mb-10">
+                <Link
+                  to={`/movie/detail/${item.id}`}
+                  className="flex flex-col mb-10"
+                >
                   <img
                     src={`${BASE_IMAGE_URL}${item.poster_path}`}
                     className="w-full h-[248px] rounded-[0.4rem]"
@@ -242,7 +252,7 @@ function MovieDetail() {
                   <span className="text-gray-500 ml-[10%] mt-1">
                     {findYear(item.release_date)}
                   </span>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
 

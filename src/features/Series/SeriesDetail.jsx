@@ -25,7 +25,7 @@ function SeriesDetail() {
     isSuccess: isSuccessSeriesData,
     isError: isErrorSeriesData,
   } = useQuery({
-    queryKey: ["detailSeries"],
+    queryKey: ["detailSeries", movieSeriesId],
     queryFn: () => getDetail(movieSeriesId, "tv"),
   });
 
@@ -35,7 +35,7 @@ function SeriesDetail() {
     isSuccess: isSuccessCreditsData,
     isError: isErrorCreditsData,
   } = useQuery({
-    queryKey: ["creditsTv"],
+    queryKey: ["creditsTv", movieSeriesId],
     queryFn: () => getCredits(movieSeriesId, "tv"),
   });
 
@@ -45,7 +45,7 @@ function SeriesDetail() {
     isSuccess: isSuccessSimilarData,
     isError: isErrorSimilarData,
   } = useQuery({
-    queryKey: ["similarMovie"],
+    queryKey: ["similarMovie", movieSeriesId],
     queryFn: () => getSimilar(movieSeriesId, "tv"),
   });
 
@@ -57,13 +57,12 @@ function SeriesDetail() {
     return (
       <div>
         <div
-          className="w-full h-[510px] border-2 "
+          className="w-full h-[530px] border-2 "
           style={{
             backgroundImage: `linear-gradient(rgba(75, 75, 78, 0.651), rgba(75, 75, 78, 0.651)), url(${BASE_IMAGE_URL}${seriesData.backdrop_path})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            minHeight: "50vh",
           }}
         >
           <div className="w-[80%] h-[100%] mx-auto flex items-center gap-15">
@@ -164,10 +163,14 @@ function SeriesDetail() {
                 </Link>
               </div>
 
-              <div className="text-[white] italic mt-3">{seriesData.tagline}</div>
+              <div className="text-[white] italic mt-3">
+                {seriesData.tagline}
+              </div>
 
-              <div className="text-[white] mt-5">
-                <h3 className="font-bold text-[1.1rem]">Overview</h3>
+              <h3 className="font-bold text-[1.1rem] text-[white] mt-5">
+                Overview
+              </h3>
+              <div className="text-[white] mt-2 h-70 overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
                 <span>{seriesData.overview}</span>
               </div>
             </div>
@@ -187,7 +190,7 @@ function SeriesDetail() {
           >
             {creditsData.cast?.slice(0, 6).map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="flex flex-col mb-10">
+                <Link to={`/person/${item.id}`} className="flex flex-col mb-10">
                   <img
                     src={`${BASE_IMAGE_URL}${item.profile_path}`}
                     className="w-full rounded-[0.4rem]"
@@ -198,12 +201,15 @@ function SeriesDetail() {
                   <span className="text-gray-500 ml-[10%] mt-1">
                     {item.character}
                   </span>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
 
             <SwiperSlide>
-              <Link to="cast" className="flex gap-2 mt-[120px] justify-center items-end">
+              <Link
+                to="cast"
+                className="flex gap-2 mt-[120px] justify-center items-end"
+              >
                 <span className="text-white">View More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +238,10 @@ function SeriesDetail() {
           >
             {similarData?.slice(0, 6).map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="flex flex-col mb-10">
+                <Link
+                  to={`/series/detail/${item.id}`}
+                  className="flex flex-col mb-10"
+                >
                   <img
                     src={`${BASE_IMAGE_URL}${item.poster_path}`}
                     className="w-full h-[248px] rounded-[0.4rem]"
@@ -243,12 +252,12 @@ function SeriesDetail() {
                   <span className="text-gray-500 ml-[10%] mt-1">
                     {findYear(item.first_air_date)}
                   </span>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
 
             <SwiperSlide>
-              <Link  className="flex gap-2 mt-[120px] justify-center items-end">
+              <Link className="flex gap-2 mt-[120px] justify-center items-end">
                 <span className="text-white">View More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

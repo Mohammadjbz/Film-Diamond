@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import getCredits from "../services/apiCredits";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BASE_IMAGE_URL } from "../utils/constants";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 
@@ -26,7 +26,7 @@ function CastPage({type}) {
       <div className="flex gap-60 w-[80%]">
         <div>
           {creditsData?.cast.map((item) => (
-            <div key={item.id} className="flex">
+            <Link key={item.id} to={`/person/${item.id}`} className="flex">
               <img
                 src={`${BASE_IMAGE_URL}${item.profile_path}`}
                 className="w-[66px] h-[66px] object-cover"
@@ -35,13 +35,13 @@ function CastPage({type}) {
                 <span>{item.name}</span>
                 <span>{item.character}</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         <div>
           {creditsData?.crew.map((item) => (
-            <div key={item.credit_id} className="flex">
+            <Link to={`/person/${item.id}`} key={item.credit_id} className="flex">
               <img
                 src={`${BASE_IMAGE_URL}${item.profile_path}` || ""}
                 className="w-[66px] h-[66px] object-cover"
@@ -50,7 +50,7 @@ function CastPage({type}) {
                 <span>{item.name}</span>
                 <span>{item.job}</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
