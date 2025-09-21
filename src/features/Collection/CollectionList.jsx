@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function GenreList() {
+function CollectionList() {
   return (
     <div className="flex gap-3">
       <ul className="text-white">
@@ -36,4 +36,4 @@ function GenreList() {
   );
 }
 
-export default GenreList;
+export default CollectionList;
