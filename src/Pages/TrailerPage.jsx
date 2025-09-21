@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
-import { getTrailerMovie } from "../services/apiMovies";
 import { useQuery } from "@tanstack/react-query";
 
 import FullPageSpinner from "../Ui/FullPageSpinner";
+import { getTrailer } from "../services/apiTrailer";
 
-function MovieTrailerPage() {
+function TrailerPage({ type }) {
   const { movieSeriesId } = useParams();
 
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ["trailer"],
-    queryFn: () => getTrailerMovie(movieSeriesId),
+    queryKey: ["trailer",type,movieSeriesId],
+    queryFn: () => getTrailer(movieSeriesId, type),
   });
 
   if (isLoading) return <FullPageSpinner />;
@@ -22,13 +22,12 @@ function MovieTrailerPage() {
         height="500"
         src={data}
         title="YouTube video player"
-        frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     );
 
   return null;
 }
 
-export default MovieTrailerPage;
+export default TrailerPage;

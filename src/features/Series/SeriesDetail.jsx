@@ -146,7 +146,7 @@ function SeriesDetail() {
               </div>
 
               <div className="mt-2">
-                <Link className="flex font-bold items-center gap-2">
+                <Link to={`/series/trailer/${seriesData.id}`} className="flex font-bold items-center gap-2">
                   <svg
                     width="13"
                     height="18"

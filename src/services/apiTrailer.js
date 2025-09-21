@@ -1,10 +1,11 @@
 import axios from "axios";
+import findTrailer from "../helpers/findTrailer";
 
-export function getMovies(endpoint) {
+export function getTrailer(id,type) {
   const options = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/movie/${endpoint}`,
-    params: { language: "en-US", page: "1" },
+    url: `https://api.themoviedb.org/3/${type}/${id}/videos`,
+    params: { language: "en-US" },
     headers: {
       accept: "application/json",
       Authorization:
@@ -12,10 +13,10 @@ export function getMovies(endpoint) {
     },
   };
 
-  const movies = axios
+  const trailer = axios
     .request(options)
-    .then((res) => res.data)
+    .then((res) => findTrailer(res.data.results))
     .catch((err) => console.error(err));
 
-  return movies;
+  return trailer;
 }

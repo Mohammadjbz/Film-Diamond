@@ -6,10 +6,10 @@ import { useState } from "react";
 import MoviePage from "./Pages/MoviePage";
 import SeriesPage from "./Pages/SeriesPage";
 import DetailPage from "./Pages/DetailPage";
-import MovieTrailerPage from "./Pages/MovieTrailerPage";
 import CastPage from "./Pages/CastPage";
 import SearchPage from "./Pages/SearchPage";
 import PersonDetailPage from "./Pages/PersonDetailPage";
+import TrailerPage from "./Pages/TrailerPage";
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -42,7 +42,11 @@ function App() {
             />
             <Route
               path="movie/trailer/:movieSeriesId"
-              element={<MovieTrailerPage />}
+              element={<TrailerPage type="movie" />}
+            />
+            <Route
+              path="series/trailer/:movieSeriesId"
+              element={<TrailerPage type="tv" />}
             />
             <Route
               path="/movie/detail/:movieSeriesId/cast"
