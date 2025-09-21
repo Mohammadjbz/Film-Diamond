@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import GenreList from "../features/Genres/GenreList";
 
 function Navbar() {
   return (
@@ -17,6 +18,8 @@ function Navbar() {
           </li>
           <li>
             <Link to="/">Genre</Link>
+
+            <GenreList/>
           </li>
           <li>
             <Link to="/">Country</Link>

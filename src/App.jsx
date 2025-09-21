@@ -10,6 +10,7 @@ import CastPage from "./Pages/CastPage";
 import SearchPage from "./Pages/SearchPage";
 import PersonDetailPage from "./Pages/PersonDetailPage";
 import TrailerPage from "./Pages/TrailerPage";
+import FilterPage from "./Pages/FilterPage";
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -58,6 +59,7 @@ function App() {
             />
             <Route path="search" element={<SearchPage />} />
             <Route path="person/:personId" element={<PersonDetailPage />} />
+            <Route path="filter" element={<FilterPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
