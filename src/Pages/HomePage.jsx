@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import HeroSection from "../features/TrendingMovie/HeroSection";
 import SliderTrendingMovie from "../features/TrendingMovie/SliderTrendingMovie";
+import FullPageSpinner from "../Ui/FullPageSpinner"
 import { getTimeMovie } from "../services/apiTrendingMovie";
 import { useTrendingMovies } from "../hooks/useTrendingMovies";
 
@@ -16,6 +17,8 @@ function HomePage({ activeIndex, setActiveIndex }) {
   });
 
   const activeMovie = data?.results[activeIndex] || null;
+
+  if(isTrendingLoading || isTimeLoading) return <FullPageSpinner/>
 
   return (
     <>

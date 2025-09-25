@@ -1,8 +1,14 @@
 import ReactPaginate from "react-paginate";
+import { useSearchParams } from "react-router-dom";
 
 function Pagination({ totalPages, setCurrentPage }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   function handlePageClick(event) {
-    setCurrentPage(event.selected + 1);
+    const selectedPage = event.selected + 1;
+    setCurrentPage(selectedPage);
+    searchParams.set("page", selectedPage);
+    setSearchParams(searchParams);
   }
 
   return (

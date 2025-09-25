@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function getFilteredData(type,genre,page) {
+export default function getFilteredData(type, genre, page, sort) {
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/discover/${type}`,
@@ -9,7 +9,7 @@ export default function getFilteredData(type,genre,page) {
       include_video: "false",
       language: "en-US",
       page: page,
-      sort_by: "popularity.desc",
+      sort_by: sort,
       with_genres: genre,
     },
     headers: {
