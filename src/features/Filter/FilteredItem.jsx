@@ -1,6 +1,8 @@
 import { BASE_IMAGE_URL } from "../../utils/constants";
 
 function FilteredItem({ data }) {
+const finalData = data;
+
   return (
     <div className="flex flex-wrap">
       {data.map((item) => (

@@ -15,9 +15,9 @@ function SortingFiltered({ setSort }) {
       "popularity.asc": "popularity-asc",
       "vote_average.desc": "rating-desc",
       "vote_average.asc": "rating-asc",
-      "first_air_date.desc": "release-date-desc",
+      "first_air_date.desc": "first-date-desc",
       "primary_release_date.desc": "release-date-desc",
-      "first_air_date.asc": "release-date-asc",
+      "first_air_date.asc": "first-date-asc",
       "primary_release_date.asc": "release-date-asc",
     };
 

@@ -1,6 +1,16 @@
 import axios from "axios";
 
-export default function getFilteredData(type, genre, page, sort) {
+export default function getFilteredData(
+  type,
+  genre,
+  page,
+  sort,
+  language,
+  rangeValue
+) {
+  const dateGte = type === "tv" ? "air_date.gte" : "primary_release_date.gte";
+  const dateLte = type === "tv" ? "air_date.lte" : "primary_release_date.lte";
+
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/discover/${type}`,
@@ -11,6 +21,9 @@ export default function getFilteredData(type, genre, page, sort) {
       page: page,
       sort_by: sort,
       with_genres: genre,
+      with_original_language: language,
+      [dateGte]: `${rangeValue[0]}-01-01`,
+      [dateLte]: `${rangeValue[1]}-12-31`,
     },
     headers: {
       accept: "application/json",
