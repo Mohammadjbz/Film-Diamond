@@ -4,3 +4,7 @@ body {
   background-color: #1a1a1a;
   height: 100%;
 }
+
+.active {
+  color: #f5c51c;
+}

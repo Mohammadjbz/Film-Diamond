@@ -15,6 +15,7 @@ import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "../../Ui/detailSliderStyle.css";
+import PlaceHolderImage from "../../Ui/PlaceHolderImage";
 
 function SeriesDetail() {
   const { movieSeriesId } = useParams();
@@ -146,7 +147,10 @@ function SeriesDetail() {
               </div>
 
               <div className="mt-2">
-                <Link to={`/series/trailer/${seriesData.id}`} className="flex font-bold items-center gap-2">
+                <Link
+                  to={`/series/trailer/${seriesData.id}`}
+                  className="flex font-bold items-center gap-2"
+                >
                   <svg
                     width="13"
                     height="18"
@@ -191,10 +195,15 @@ function SeriesDetail() {
             {creditsData.cast?.slice(0, 6).map((item) => (
               <SwiperSlide key={item.id}>
                 <Link to={`/person/${item.id}`} className="flex flex-col mb-10">
-                  <img
-                    src={`${BASE_IMAGE_URL}${item.profile_path}`}
-                    className="w-full rounded-[0.4rem]"
-                  />
+                  {item.profile_path ? (
+                    <img
+                      src={`${BASE_IMAGE_URL}${item.profile_path}`}
+                      className="w-full rounded-[0.4rem]"
+                    />
+                  ) : (
+                    <PlaceHolderImage type="slider"/>
+                  )}
+
                   <span className="text-white font-semibold ml-[10%] mt-3">
                     {item.name}
                   </span>
@@ -236,16 +245,20 @@ function SeriesDetail() {
             slidesPerView={5}
             scrollbar={{ draggable: true, hide: false }}
           >
-            {similarData?.slice(0, 6).map((item) => (
+            {similarData?.slice(0, 10).map((item) => (
               <SwiperSlide key={item.id}>
                 <Link
                   to={`/series/detail/${item.id}`}
                   className="flex flex-col mb-10"
                 >
-                  <img
-                    src={`${BASE_IMAGE_URL}${item.poster_path}`}
-                    className="w-full h-[248px] rounded-[0.4rem]"
-                  />
+                  {item.poster_path ? (
+                    <img
+                      src={`${BASE_IMAGE_URL}${item.poster_path}`}
+                      className="w-full h-[248px] rounded-[0.4rem]"
+                    />
+                  ) : (
+                    <PlaceHolderImage type="slider"/>
+                  )}
                   <span className="text-white font-semibold ml-[10%] mt-3">
                     {item.name}
                   </span>
@@ -255,23 +268,6 @@ function SeriesDetail() {
                 </Link>
               </SwiperSlide>
             ))}
-
-            <SwiperSlide>
-              <Link className="flex gap-2 mt-[120px] justify-center items-end">
-                <span className="text-white">View More</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  width="20"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="white"
-                    d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-                  />
-                </svg>
-              </Link>
-            </SwiperSlide>
           </Swiper>
         </div>
       </div>

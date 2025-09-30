@@ -40,15 +40,17 @@ function FilterPage() {
   const totalPages = data?.total_pages || 0;
 
   return (
-    <div className="text-white">
-      <SortingFiltered setSort={setSort} />
-      <FilterOption
-        language={language}
-        setLanguage={setLanguage}
-        rangeValue={rangeValue}
-        setRangeValue={setRangeValue}
-        setFilter={setFilter}
-      />
+    <div className="text-white w-[80%] bg-gray-800">
+      <div className="flex">
+        <SortingFiltered setSort={setSort} />
+        <FilterOption
+          language={language}
+          setLanguage={setLanguage}
+          rangeValue={rangeValue}
+          setRangeValue={setRangeValue}
+          setFilter={setFilter}
+        />
+      </div>
       {isLoading ? (
         <FullPageSpinner />
       ) : (

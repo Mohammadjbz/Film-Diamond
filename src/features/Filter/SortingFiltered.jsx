@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function SortingFiltered({ setSort }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showSortList, setShowSortList] = useState(false);
   const type = searchParams.get("type");
-  console.log(type);
 
   function handleClick(e) {
     const value = e.target.dataset.sort;
-    console.log(value);
     setSort(value);
+    setShowSortList(false);
 
     const map = {
       "popularity.desc": "popularity-desc",
@@ -27,51 +28,57 @@ function SortingFiltered({ setSort }) {
 
   return (
     <div>
-      <button>Sorting By</button>
-      <ul>
-        <li>
-          <button data-sort="popularity.desc" onClick={handleClick}>
-            Popularity Descending
-          </button>
-        </li>
-        <li>
-          <button data-sort="popularity.asc" onClick={handleClick}>
-            Popularity Ascending
-          </button>
-        </li>
-        <li>
-          <button data-sort="vote_average.desc" onClick={handleClick}>
-            Rating Descending
-          </button>
-        </li>
-        <li>
-          <button data-sort="vote_average.asc" onClick={handleClick}>
-            Rating Ascending
-          </button>
-        </li>
-        <li>
-          <button
-            data-sort={
-              type === "tv"
-                ? "first_air_date.desc"
-                : "primary_release_date.desc"
-            }
-            onClick={handleClick}
-          >
-            Release Date Descending
-          </button>
-        </li>
-        <li>
-          <button
-            data-sort={
-              type === "tv" ? "first_air_date.asc" : "primary_release_date.asc"
-            }
-            onClick={handleClick}
-          >
-            Release Date Ascending
-          </button>
-        </li>
-      </ul>
+      <button onClick={() => setShowSortList((prev) => !prev)}>
+        Sorting By
+      </button>
+      {showSortList && (
+        <ul>
+          <li>
+            <button data-sort="popularity.desc" onClick={handleClick}>
+              Popularity Descending
+            </button>
+          </li>
+          <li>
+            <button data-sort="popularity.asc" onClick={handleClick}>
+              Popularity Ascending
+            </button>
+          </li>
+          <li>
+            <button data-sort="vote_average.desc" onClick={handleClick}>
+              Rating Descending
+            </button>
+          </li>
+          <li>
+            <button data-sort="vote_average.asc" onClick={handleClick}>
+              Rating Ascending
+            </button>
+          </li>
+          <li>
+            <button
+              data-sort={
+                type === "tv"
+                  ? "first_air_date.desc"
+                  : "primary_release_date.desc"
+              }
+              onClick={handleClick}
+            >
+              Release Date Descending
+            </button>
+          </li>
+          <li>
+            <button
+              data-sort={
+                type === "tv"
+                  ? "first_air_date.asc"
+                  : "primary_release_date.asc"
+              }
+              onClick={handleClick}
+            >
+              Release Date Ascending
+            </button>
+          </li>
+        </ul>
+      )}
     </div>
   );
 }

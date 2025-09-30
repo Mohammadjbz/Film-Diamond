@@ -21,12 +21,15 @@ function FilterOption({
 
   return (
     <div className="mt-5 ml-3">
-      Filter:
-      <ReleaseRange rangeValue={rangeValue} setRangeValue={setRangeValue} />
-      <LanguageFilter setLanguage={setLanguage} />
-      <button className="bg-red-800 mt-5" onClick={handleFilter}>
-        Filter
-      </button>
+      <span>Filter:</span>
+
+      <div className="flex gap-20 items-center">
+        <ReleaseRange rangeValue={rangeValue} setRangeValue={setRangeValue} />
+        <LanguageFilter setLanguage={setLanguage} />
+        <button className="bg-red-800 mt-5" onClick={handleFilter}>
+          Filter
+        </button>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { calculateLength } from "../../helpers/calculateLength";
 import shortenText from "../../helpers/shortenText";
 import { Link } from "react-router-dom";
 
-function HeroSection({ activeMovie, isTimeLoading, isTrendingLoading, time }) {
+function HeroSection({ activeMovie, isTimeLoading, time }) {
   const titleLength = activeMovie?.title
     ? calculateLength(activeMovie?.title)
     : "small";
@@ -15,7 +15,7 @@ function HeroSection({ activeMovie, isTimeLoading, isTrendingLoading, time }) {
   const titleStyle =
     titleLength === "long" ? "w-[100%]  text-4xl " : " w-[70%]  text-5xl ";
 
-  if (isTimeLoading || isTrendingLoading) {
+  if (isTimeLoading) {
     return (
       <div className="flex items-center justify-center w-[32.5rem] h-[23rem] mt-[70px] mb-[5px]">
         <FadeLoader

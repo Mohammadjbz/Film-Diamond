@@ -6,7 +6,7 @@ import "./swiper.css";
 import { BASE_IMAGE_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 
-function SliderTrendingMovie({ data, isLoading, setActiveIndex }) {
+function SliderTrendingMovie({ data, setActiveIndex }) {
   return (
     <div className="w-full mb-[50px] trending-movie">
       <div className="custom-navigation-buttons flex gap-[20px] w-[80%] mx-auto mt-[5px]">
@@ -60,17 +60,13 @@ function SliderTrendingMovie({ data, isLoading, setActiveIndex }) {
         centeredSlides={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {!isLoading &&
-          data.results.map((item) => (
-            <SwiperSlide key={item.id}>
-              <Link to={`movie/detail/${item.id}`}>
-                <img
-                  src={`${BASE_IMAGE_URL}${item.poster_path}`}
-                  alt="picture"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+        {data.results.map((item) => (
+          <SwiperSlide key={item.id}>
+            <Link to={`movie/detail/${item.id}`}>
+              <img src={`${BASE_IMAGE_URL}${item.poster_path}`} alt="picture" />
+            </Link>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

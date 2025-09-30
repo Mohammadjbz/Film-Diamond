@@ -3,8 +3,9 @@ import getCredits from "../services/apiCredits";
 import { Link, useParams } from "react-router-dom";
 import { BASE_IMAGE_URL } from "../utils/constants";
 import FullPageSpinner from "../Ui/FullPageSpinner";
+import PlaceHolderImage from "../Ui/PlaceHolderImage";
 
-function CastPage({type}) {
+function CastPage({ type }) {
   const { movieSeriesId } = useParams();
 
   const {
@@ -27,10 +28,15 @@ function CastPage({type}) {
         <div>
           {creditsData?.cast.map((item) => (
             <Link key={item.id} to={`/person/${item.id}`} className="flex">
-              <img
-                src={`${BASE_IMAGE_URL}${item.profile_path}`}
-                className="w-[66px] h-[66px] object-cover"
-              />
+              {item.profile_path ? (
+                <img
+                  src={`${BASE_IMAGE_URL}${item.profile_path}`}
+                  className="w-[66px] h-[66px] object-cover"
+                />
+              ) : (
+                <PlaceHolderImage type="cast" />
+              )}
+
               <div className="text-white flex flex-col">
                 <span>{item.name}</span>
                 <span>{item.character}</span>
@@ -41,11 +47,20 @@ function CastPage({type}) {
 
         <div>
           {creditsData?.crew.map((item) => (
-            <Link to={`/person/${item.id}`} key={item.credit_id} className="flex">
-              <img
-                src={`${BASE_IMAGE_URL}${item.profile_path}` || ""}
-                className="w-[66px] h-[66px] object-cover"
-              />
+            <Link
+              to={`/person/${item.id}`}
+              key={item.credit_id}
+              className="flex"
+            >
+              {item.profile_path ? (
+                <img
+                  src={`${BASE_IMAGE_URL}${item.profile_path}` || ""}
+                  className="w-[66px] h-[66px] object-cover"
+                />
+              ) : (
+                <PlaceHolderImage type="cast" />
+              )}
+
               <div className="text-white flex flex-col">
                 <span>{item.name}</span>
                 <span>{item.job}</span>
