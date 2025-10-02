@@ -50,9 +50,7 @@ function MovieDetail() {
     queryFn: () => getSimilar(movieSeriesId, "movie"),
   });
 
-  console.log(similarData);
-
-  if (isLoadingMovieData && isLoadingCreditsData) return <FullPageSpinner />;
+  if (isLoadingMovieData || isLoadingCreditsData) return <FullPageSpinner />;
 
   if (isSuccessMovieData && isSuccessCreditsData)
     return (

@@ -27,33 +27,51 @@ function SortingFiltered({ setSort }) {
   }
 
   return (
-    <div>
-      <button onClick={() => setShowSortList((prev) => !prev)}>
-        Sorting By
+    <div className="min-w-[25%] relative">
+      <button
+        onClick={() => setShowSortList((prev) => !prev)}
+        className="flex items-center gap-1 p-2 rounded-[6px] bg-[#312e2e]"
+      >
+        <span>Sorting By</span>
+
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 640 640"
+            className="w-4"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path
+                fill="#f0f4f7"
+                d="M140.3 376.8c12.6 10.2 31.1 9.5 42.8-2.2l128-128c9.2-9.2 11.9-22.9 6.9-34.9S301.4 192 288.5 192l-256 0c-12.9 0-24.6 7.8-29.6 19.8S.7 237.5 9.9 246.6l128 128 2.4 2.2z"
+              />
+            </svg>
+          </svg>
+        </span>
       </button>
       {showSortList && (
-        <ul>
-          <li>
+        <ul className="bg-[#242121e6] rounded-[8px] absolute p-3 text-left">
+          <li className="mb-1">
             <button data-sort="popularity.desc" onClick={handleClick}>
               Popularity Descending
             </button>
           </li>
-          <li>
+          <li className="mb-1">
             <button data-sort="popularity.asc" onClick={handleClick}>
               Popularity Ascending
             </button>
           </li>
-          <li>
+          <li className="mb-1">
             <button data-sort="vote_average.desc" onClick={handleClick}>
               Rating Descending
             </button>
           </li>
-          <li>
+          <li className="mb-1">
             <button data-sort="vote_average.asc" onClick={handleClick}>
               Rating Ascending
             </button>
           </li>
-          <li>
+          <li className="mb-1">
             <button
               data-sort={
                 type === "tv"
@@ -65,7 +83,7 @@ function SortingFiltered({ setSort }) {
               Release Date Descending
             </button>
           </li>
-          <li>
+          <li className="mb-1">
             <button
               data-sort={
                 type === "tv"

@@ -1,5 +1,6 @@
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { useState } from "react";
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -12,42 +13,60 @@ function ReleaseRange({ rangeValue, setRangeValue }) {
     setRangeValue(newValues);
   };
 
+  const [showRangeValue, setShowRangeValue] = useState(false);
   const [minSelected, maxSelected] = rangeValue;
 
   return (
-    <div style={{ padding: "40px 20px", width: "80%", margin: "0 auto" }}>
-      <h2>انتخاب بازه عددی (RC-Slider)</h2>
+    <div className="w-[50%] relative">
+      <button
+        onClick={() => setShowRangeValue((show) => !show)}
+        className="border border-[#999494] rounded-[4px] py-[4px] px-[8px]  mx-auto cursor-pointer"
+      >
+        Year of production
+      </button>
 
-      <div style={{ marginBottom: "20px", textAlign: "center" }}>
-        <p>
-          **حداقل:**{" "}
-          <span style={{ fontWeight: "bold", color: "#108ee9" }}>
-            {minSelected}
-          </span>{" "}
-          | **حداکثر:**{" "}
-          <span style={{ fontWeight: "bold", color: "#108ee9" }}>
-            {maxSelected}
-          </span>
-        </p>
-      </div>
-
-      <Slider
-        range
-        min={MIN_VALUE}
-        max={MAX_VALUE}
-        step={STEP}
-        value={rangeValue}
-        onChange={handleRangeChange}
-        trackStyle={[{ backgroundColor: "#108ee9" }]}
-        handleStyle={[
-          { borderColor: "#108ee9", backgroundColor: "white" },
-          { borderColor: "#108ee9", backgroundColor: "white" },
-        ]}
-        railStyle={{ backgroundColor: "#ccc" }}
-      />
-
-      <div>min:{minSelected}</div>
-      <div>max:{maxSelected}</div>
+      {showRangeValue && (
+        <div className="bg-[#242121e6] p-1 rounded-[8px]">
+          {" "}
+          <div className="mt-2 mb-1">
+            <p>
+              from <span>{minSelected}</span> to <span>{maxSelected}</span>
+            </p>
+          </div>
+          <div className="w-[90%]">
+            <Slider
+              range
+              min={MIN_VALUE}
+              max={MAX_VALUE}
+              step={STEP}
+              value={rangeValue}
+              onChange={handleRangeChange}
+              styles={{
+                rail: {
+                  backgroundColor: "#bbb9b9", // خط اصلی (پس‌زمینه اسلایدر)
+                  height: 4,
+                },
+                track: {
+                  backgroundColor: "#F5C51C", // بخش فعال (بین دو هندل یا از اول تا هندل)
+                  height: 4,
+                },
+                handle: {
+                  borderColor: "#F5C51C", // رنگ دور هندل
+                  backgroundColor: "#fac70d", // رنگ داخل هندل
+                  width: 15,
+                  height: 15,
+                  opacity: 1,
+                  boxShadow: "0 0 5px rgba(0,0,0,0.2)",
+                },
+              }}
+            />
+          </div>
+          <div className="flex justify-between w-[80%]">
+            <div>{minSelected}</div>
+            <div>{maxSelected}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

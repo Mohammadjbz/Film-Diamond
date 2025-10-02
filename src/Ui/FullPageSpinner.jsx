@@ -2,7 +2,7 @@ import { FadeLoader } from "react-spinners";
 
 function FullPageSpinner() {
   return (
-    <div className="h-[500px] flex items-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center ">
       <FadeLoader
         color="#F5C51C"
         height={14}
