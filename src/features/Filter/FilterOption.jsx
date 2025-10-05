@@ -16,7 +16,7 @@ function FilterOption({
   const [showFilter, setShowFilter] = useState(false);
   const urlLanguage = searchParams.get("language") || "en";
   const urlYear = searchParams.get("release-range");
-  const [minYear, maxYear] = urlYear.split("-");
+  const [minYear, maxYear] = urlYear?.split("-") || [1970, 2025];
 
   function handleFilter() {
     const [min, max] = rangeValue;

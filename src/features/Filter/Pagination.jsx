@@ -4,6 +4,9 @@ import { useSearchParams } from "react-router-dom";
 function Pagination({ totalPages, setCurrentPage }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const currentPageFromUrl = Number(searchParams.get("page")) || 1;
+  const initialPage = currentPageFromUrl - 1;
+
   function handlePageClick(event) {
     const selectedPage = event.selected + 1;
     setCurrentPage(selectedPage);
@@ -16,10 +19,11 @@ function Pagination({ totalPages, setCurrentPage }) {
       breakLabel="..."
       nextLabel="Next >"
       onPageChange={handlePageClick}
+      forcePage={initialPage}
       pageRangeDisplayed={3}
       marginPagesDisplayed={2}
       pageCount={totalPages > 500 ? 500 : Number(totalPages)}
-      previousLabel="< Previos"
+      previousLabel="< Previous"
       renderOnZeroPageCount={null}
       containerClassName="flex gap-2 justify-center mt-4"
       pageClassName="px-3 py-1 border rounded cursor-pointer"

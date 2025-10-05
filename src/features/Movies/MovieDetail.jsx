@@ -179,96 +179,103 @@ function MovieDetail() {
           </div>
         </div>
 
-        <div className="detail-slider w-[80%] mx-auto mt-[3rem]">
-          <h3 className="text-white font-semibold mb-4 text-xl">
-            Top Billed Cast
-          </h3>
+        {(creditsData?.cast?.length > 0 || creditsData?.crew?.length > 0) && (
+          <div className="detail-slider w-[80%] mx-auto mt-[3rem]">
+            <h3 className="text-white font-semibold mb-4 text-xl">
+              Top Billed Cast
+            </h3>
 
-          <Swiper
-            modules={[Scrollbar]}
-            spaceBetween={20}
-            slidesPerView={5}
-            scrollbar={{ draggable: true, hide: false }}
-          >
-            {creditsData.cast?.slice(0, 6).map((item) => (
-              <SwiperSlide key={item.id}>
-                <Link to={`/person/${item.id}`} className="flex flex-col mb-10">
-                  {item.profile_path ? (
-                    <img
-                      src={`${BASE_IMAGE_URL}${item.profile_path}`}
-                      className="w-full rounded-[0.4rem]"
-                    />
-                  ) : (
-                    <PlaceHolderImage type="slider" />
-                  )}
+            <Swiper
+              modules={[Scrollbar]}
+              spaceBetween={20}
+              slidesPerView={5}
+              scrollbar={{ draggable: true, hide: false }}
+            >
+              {creditsData.cast?.slice(0, 6).map((item) => (
+                <SwiperSlide key={item.id}>
+                  <Link
+                    to={`/person/${item.id}`}
+                    className="flex flex-col mb-10"
+                  >
+                    {item.profile_path ? (
+                      <img
+                        src={`${BASE_IMAGE_URL}${item.profile_path}`}
+                        className="w-full rounded-[0.4rem]"
+                      />
+                    ) : (
+                      <PlaceHolderImage type="slider" />
+                    )}
 
-                  <span className="text-white font-semibold ml-[10%] mt-3">
-                    {item.name}
-                  </span>
-                  <span className="text-gray-500 ml-[10%] mt-1">
-                    {item.character}
-                  </span>
-                </Link>
-              </SwiperSlide>
-            ))}
+                    <span className="text-white font-semibold ml-[10%] mt-3">
+                      {item.name}
+                    </span>
+                    <span className="text-gray-500 ml-[10%] mt-1">
+                      {item.character}
+                    </span>
+                  </Link>
+                </SwiperSlide>
+              ))}
 
-            <SwiperSlide>
-              <Link
-                to="cast"
-                className="flex gap-2 mt-[120px] justify-center items-end"
-              >
-                <span className="text-white">View More</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  width="20"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="white"
-                    d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
-                  />
-                </svg>
-              </Link>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-
-        <div className="detail-slider w-[80%] mx-auto mt-[3rem]">
-          <h3 className="text-white font-semibold mb-4 text-xl">Similar</h3>
-
-          <Swiper
-            modules={[Scrollbar]}
-            spaceBetween={20}
-            slidesPerView={5}
-            scrollbar={{ draggable: true, hide: false }}
-          >
-            {similarData?.slice(0, 10).map((item) => (
-              <SwiperSlide key={item.id}>
+              <SwiperSlide>
                 <Link
-                  to={`/movie/detail/${item.id}`}
-                  className="flex flex-col mb-10"
+                  to="cast"
+                  className="flex gap-2 mt-[120px] justify-center items-end"
                 >
-                  {item.poster_path ? (
-                    <img
-                      src={`${BASE_IMAGE_URL}${item.poster_path}`}
-                      className="w-full h-[248px] rounded-[0.4rem]"
+                  <span className="text-white">View More</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="20"
+                    width="20"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="white"
+                      d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"
                     />
-                  ) : (
-                    <PlaceHolderImage type="slider" />
-                  )}
-
-                  <span className="text-white font-semibold ml-[10%] mt-3">
-                    {item.title}
-                  </span>
-                  <span className="text-gray-500 ml-[10%] mt-1">
-                    {findYear(item.release_date)}
-                  </span>
+                  </svg>
                 </Link>
               </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+            </Swiper>
+          </div>
+        )}
+
+        {similarData?.length > 0 && (
+          <div className="detail-slider w-[80%] mx-auto mt-[3rem]">
+            <h3 className="text-white font-semibold mb-4 text-xl">Similar</h3>
+
+            <Swiper
+              modules={[Scrollbar]}
+              spaceBetween={20}
+              slidesPerView={5}
+              scrollbar={{ draggable: true, hide: false }}
+            >
+              {similarData?.slice(0, 10).map((item) => (
+                <SwiperSlide key={item.id}>
+                  <Link
+                    to={`/movie/detail/${item.id}`}
+                    className="flex flex-col mb-10"
+                  >
+                    {item.poster_path ? (
+                      <img
+                        src={`${BASE_IMAGE_URL}${item.poster_path}`}
+                        className="w-full h-[248px] rounded-[0.4rem]"
+                      />
+                    ) : (
+                      <PlaceHolderImage type="slider" />
+                    )}
+
+                    <span className="text-white font-semibold ml-[10%] mt-3">
+                      {item.title}
+                    </span>
+                    <span className="text-gray-500 ml-[10%] mt-1">
+                      {findYear(item.release_date)}
+                    </span>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
       </div>
     );
 }

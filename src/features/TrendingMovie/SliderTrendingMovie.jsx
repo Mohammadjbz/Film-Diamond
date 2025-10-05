@@ -50,7 +50,6 @@ function SliderTrendingMovie({ data, setActiveIndex }) {
         className="swiper-trending-movie"
         spaceBetween={25}
         modules={[Navigation, Autoplay]}
-        // autoplay={{ delay: 5000 }}
         navigation={{
           nextEl: ".my-button-next",
           prevEl: ".my-button-prev",
