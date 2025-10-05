@@ -24,46 +24,52 @@ function CastPage({ type }) {
 
   if (isSuccessCreditsData)
     return (
-      <div className="flex gap-60 w-[80%]">
-        <div>
+      <div className="flex w-[80%] gap-5 mt-10 mb-5 bg-[#252222] rounded-[6px] py-2 border-3 border-double border-[#F5C51C]">
+        <div className="flex flex-col gap-3 ml-4">
+          <h3 className="font-bold text-xl tracking-wider text-[#ffffffef]">Cast</h3>
           {creditsData?.cast.map((item) => (
-            <Link key={item.id} to={`/person/${item.id}`} className="flex">
+            <Link
+              key={item.id}
+              to={`/person/${item.id}`}
+              className="flex items-center gap-4 w-fit"
+            >
               {item.profile_path ? (
                 <img
                   src={`${BASE_IMAGE_URL}${item.profile_path}`}
-                  className="w-[66px] h-[66px] object-cover"
+                  className="w-[66px] h-[66px] object-cover rounded-[6px]"
                 />
               ) : (
                 <PlaceHolderImage type="cast" />
               )}
 
-              <div className="text-white flex flex-col">
-                <span>{item.name}</span>
-                <span>{item.character}</span>
+              <div className="text-white flex flex-col gap-1">
+                <span className="font-semibold">{item.name}</span>
+                <span className="text-[#9e9797]">{item.character}</span>
               </div>
             </Link>
           ))}
         </div>
 
-        <div>
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold text-xl tracking-wider text-[#ffffffef]">Crew</h3>
           {creditsData?.crew.map((item) => (
             <Link
               to={`/person/${item.id}`}
               key={item.credit_id}
-              className="flex"
+              className="flex gap-4 items-center w-fit"
             >
               {item.profile_path ? (
                 <img
                   src={`${BASE_IMAGE_URL}${item.profile_path}` || ""}
-                  className="w-[66px] h-[66px] object-cover"
+                  className="w-[66px] h-[66px] object-cover rounded-[6px]"
                 />
               ) : (
                 <PlaceHolderImage type="cast" />
               )}
 
-              <div className="text-white flex flex-col">
-                <span>{item.name}</span>
-                <span>{item.job}</span>
+              <div className="text-white flex flex-col gap-1">
+                <span className="font-semibold">{item.name}</span>
+                <span className="text-[#9e9797]">{item.job}</span>
               </div>
             </Link>
           ))}

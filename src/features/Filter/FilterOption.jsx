@@ -31,9 +31,38 @@ function FilterOption({
       <div className="flex gap-2">
         <button
           onClick={() => setShowFilter((show) => !show)}
-          className="mb-3 p-2 w-[20%] rounded-[6px] text-black bg-[#ffffff]"
+          className="mb-3 p-2 w-[20%] flex justify-center items-center cursor-pointer rounded-[6px] font-semibold text-black bg-[#ffffff]"
         >
-          Filter
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M19 8L5 8"
+              stroke="black"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M17 12L5 12"
+              stroke="black"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15 16L5 16"
+              stroke="black"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Filter</span>
         </button>
         <button className="mb-3 p-2 w-[20%] rounded-[6px] bg-[#312e2e]">
           {convertLanguage(urlLanguage)}

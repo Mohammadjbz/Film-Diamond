@@ -25,7 +25,7 @@ function Pagination({ totalPages, setCurrentPage }) {
       pageCount={totalPages > 500 ? 500 : Number(totalPages)}
       previousLabel="< Previous"
       renderOnZeroPageCount={null}
-      containerClassName="flex gap-2 justify-center mt-4"
+      containerClassName="flex gap-2 justify-center mt-8 mb-10"
       pageClassName="px-3 py-1 border rounded cursor-pointer"
       activeClassName="bg-blue-500 text-white"
       previousClassName="px-3 py-1 border rounded cursor-pointer"

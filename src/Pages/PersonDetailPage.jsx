@@ -4,10 +4,7 @@ import getPersonDetail from "../services/apiPerson";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 import { BASE_IMAGE_URL } from "../utils/constants";
 import getBestEffects from "../services/apiKnownFor";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
-import PlaceHolderImage from "../Ui/PlaceHolderImage";
 
 function PersonDetailPage() {
   const { personId } = useParams();
@@ -17,7 +14,7 @@ function PersonDetailPage() {
     isLoading: isLoadingPersonData,
     isSuccess: isSuccessPersonData,
   } = useQuery({
-    queryKey: ["personDetail"],
+    queryKey: ["personDetail", personId],
     queryFn: () => getPersonDetail(personId),
   });
 
@@ -26,7 +23,7 @@ function PersonDetailPage() {
     isLoading: isLoadingEffectsData,
     isSuccess: isSuccessEffectsData,
   } = useQuery({
-    queryKey: ["bestEffects"],
+    queryKey: ["bestEffects",personId],
     queryFn: () => getBestEffects(personId),
   });
 
@@ -116,7 +113,11 @@ function PersonDetailPage() {
                 className="w-[16%]"
               >
                 <img
-                  src={`${BASE_IMAGE_URL}${item.poster_path}`}
+                  src={
+                    item.poster_path
+                      ? `${BASE_IMAGE_URL}${item.poster_path}`
+                      : "https://placehold.co/145x218?text=No+Image&font=opensans"
+                  }
                   className="rounded-[0.4rem]"
                 />
                 <span className="text-sm mt-2 block">
