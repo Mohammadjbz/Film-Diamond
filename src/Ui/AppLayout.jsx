@@ -20,7 +20,7 @@ function AppLayout({ activeIndex }) {
 
   return (
     <div
-      className="flex flex-col items-center"
+      className="flex flex-col min-h-screen items-center"
       style={isHomePage ? backImg : { backgroundColor: "transparent" }}
     >
       <Navbar />

@@ -62,7 +62,7 @@ function SliderTrendingMovie({ data, setActiveIndex }) {
         {data.results.map((item) => (
           <SwiperSlide key={item.id}>
             <Link to={`movie/detail/${item.id}`}>
-              <img src={`${BASE_IMAGE_URL}${item.poster_path}`} alt="picture" />
+              <img src={`${BASE_IMAGE_URL}${item.poster_path}`} alt="picture" className="rounded-[5px]"/>
             </Link>
           </SwiperSlide>
         ))}

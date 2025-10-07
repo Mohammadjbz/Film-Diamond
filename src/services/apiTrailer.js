@@ -16,7 +16,7 @@ export function getTrailer(id,type) {
   const trailer = axios
     .request(options)
     .then((res) => findTrailer(res.data.results))
-    .catch((err) => console.error(err));
+    .catch(() => null);
 
   return trailer;
 }

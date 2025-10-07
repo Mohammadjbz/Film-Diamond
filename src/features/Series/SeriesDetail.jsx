@@ -68,7 +68,11 @@ function SeriesDetail() {
         >
           <div className="w-[80%] h-[100%] mx-auto flex items-center gap-15">
             <img
-              src={`${BASE_IMAGE_URL}${seriesData.poster_path}`}
+              src={
+                seriesData.poster_path
+                  ? `${BASE_IMAGE_URL}${seriesData.poster_path}`
+                  : "https://placehold.co/270x480?text=No+Image&font=opensans"
+              }
               className="w-[35%] h-[93%] rounded-[12px] border-3 border-yellow-500"
             />
             <div className="flex flex-col h-[93%]">
