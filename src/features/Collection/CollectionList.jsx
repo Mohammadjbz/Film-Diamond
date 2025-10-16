@@ -6,7 +6,7 @@ function CollectionList({ onItemClick }) {
       <ul className="text-white">
         <li
           onClick={onItemClick}
-          className="mt-2 mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mt-2 mb-1 pl-2  transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=movie&genre=28&page=1&sort=popularity-desc`}>
             Action Movie
@@ -14,7 +14,7 @@ function CollectionList({ onItemClick }) {
         </li>
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2  transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=movie&genre=12&page=1&sort=popularity-desc`}>
             Adventure Movie
@@ -22,7 +22,7 @@ function CollectionList({ onItemClick }) {
         </li>
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2  transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=movie&genre=35&page=1&sort=popularity-desc`}>
             Comedy Movie
@@ -30,7 +30,7 @@ function CollectionList({ onItemClick }) {
         </li>
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2 transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link
             to={`/filter?type=movie&genre=10751&page=1&sort=popularity-desc`}
@@ -43,7 +43,7 @@ function CollectionList({ onItemClick }) {
       <ul className="text-white">
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2  transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=tv&genre=10759&page=1&sort=popularity-desc`}>
             Action Series
@@ -51,7 +51,7 @@ function CollectionList({ onItemClick }) {
         </li>
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2  transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=tv&genre=10767&page=1&sort=popularity-desc`}>
             Talk Show Series
@@ -59,7 +59,7 @@ function CollectionList({ onItemClick }) {
         </li>
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2  transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=tv&genre=35&page=1&sort=popularity-desc`}>
             Comedy Series
@@ -67,7 +67,7 @@ function CollectionList({ onItemClick }) {
         </li>
         <li
           onClick={onItemClick}
-          className="mb-1 pl-2  transition hover:duration-500 hover:text-[#F5C51C]"
+          className="mb-1 pl-2 transition duration-500 ease-in-out hover:text-[#F5C51C]"
         >
           <Link to={`/filter?type=tv&genre=10751&page=1&sort=popularity-desc`}>
             Family Series

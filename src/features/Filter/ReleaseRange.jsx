@@ -1,6 +1,6 @@
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -15,12 +15,31 @@ function ReleaseRange({ rangeValue, setRangeValue }) {
 
   const [showRangeValue, setShowRangeValue] = useState(false);
   const [minSelected, maxSelected] = rangeValue;
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleOutsideClick(e) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowRangeValue(false);
+      }
+    }
+
+    if (showRangeValue) {
+      document.addEventListener("click", handleOutsideClick);
+    } else {
+      document.removeEventListener("click", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [showRangeValue]);
 
   return (
-    <div className="w-[50%] relative">
+    <div className="w-[50%] relative" ref={menuRef}>
       <button
         onClick={() => setShowRangeValue((show) => !show)}
-        className="border border-[#999494] rounded-[4px] py-[4px] px-[8px]  mx-auto cursor-pointer"
+        className="border border-2 border-[#f5c61cab] text-[#faf1f1f9] rounded-[4px] py-[4px] px-[8px]  mx-auto cursor-pointer hover:bg-[#44434197] transition-all ease-in-out diration-200"
       >
         Year of production
       </button>

@@ -11,6 +11,9 @@ import percentage from "../helpers/calculatePercentage";
 import convertDate from "../helpers/convertDate";
 import getColor from "../helpers/styleHelper";
 
+const hoverNextPrev =
+  "hover:bg-[#ffffff2d] transition-all ease-in-out duration-150";
+
 function Slider({ data, isLoading = false, uniqKey, type }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -21,12 +24,12 @@ function Slider({ data, isLoading = false, uniqKey, type }) {
     <>
       <div className="custom-navigation-buttons flex gap-[20px] mt-[40px] mb-[10px] w-[80%] mx-auto">
         <div
-          className={`${prevClass} my-button-prev border border-[#ffffff5a] rounded-[50%]`}
+          className={`${prevClass} ${hoverNextPrev} my-button-prev cursor-pointer border border-2 border-[#ffffff5a] rounded-[50%]`}
         >
           <svg
             width="26"
             height="22"
-            viewBox="0 -0 14 20"
+            viewBox="0 0 15 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -40,12 +43,12 @@ function Slider({ data, isLoading = false, uniqKey, type }) {
           </svg>
         </div>
         <div
-          className={`${nextClass} my-button-next border border-[#ffffff5a] rounded-[50%]`}
+          className={`${nextClass} ${hoverNextPrev} my-button-next cursor-pointer border border-2 border-[#ffffff5a] rounded-[50%]`}
         >
           <svg
             width="26"
             height="22"
-            viewBox="0 0 14 20"
+            viewBox="0 0 12 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -63,7 +66,7 @@ function Slider({ data, isLoading = false, uniqKey, type }) {
       <Swiper
         spaceBetween={28}
         modules={[Navigation, Autoplay]}
-        // autoplay={{ delay: 5000 }}
+        // autoplay={{ delay: 2000 }}
         navigation={{
           nextEl: `.${nextClass}`,
           prevEl: `.${prevClass}`,

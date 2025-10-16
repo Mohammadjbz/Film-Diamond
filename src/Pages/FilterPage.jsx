@@ -182,6 +182,7 @@ function FilterPage() {
     queryKey: ["filter", type, genre, currentPage, sort, filter],
     queryFn: () =>
       getFilteredData(type, genre, currentPage, sort, language, rangeValue),
+     refetchOnWindowFocus: false,
   });
 
   const totalPages = data?.total_pages || 0;
@@ -193,7 +194,7 @@ function FilterPage() {
 
   return (
     <div className="text-white w-[80%] ">
-      <div className="flex justify-between mt-5">
+      <div className="flex justify-between mt-6">
         <FilterOption
           language={language}
           setLanguage={setLanguage}

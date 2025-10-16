@@ -16,10 +16,10 @@ function TrailerPage({ type }) {
 
   if (isSuccess)
     return (
-  <div>
+  <div className="w-[100%]">
       {data?<iframe
-        className="mt-[20px] rounded-[15px]"
-        width="80%"
+        className="mt-[20px] mx-auto rounded-[15px]"
+        width="70%"
         height="500"
         src={data}
         title="YouTube video player"

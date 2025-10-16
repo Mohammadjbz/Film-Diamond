@@ -1,14 +1,24 @@
 export default function convertLanguage(language) {
   switch (language) {
     case "en":
-      return "english";
+      return "English";
     case "hi":
-      return "india";
+      return "Hindi";
     case "es":
-      return "spanish";
+      return "Spanish";
     case "fr":
       return "french";
     case "fa":
-      return "persian";
+      return "Persian";
+    case "de":
+      return "German";
+    case "it":
+      return "Italian";
+    case "ru":
+      return "Russian";
+    case "ja":
+      return "Japanese";
+    case "tr":
+      return "Turkish";
   }
 }

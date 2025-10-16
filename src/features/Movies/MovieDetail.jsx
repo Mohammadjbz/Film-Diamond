@@ -219,7 +219,7 @@ function MovieDetail() {
               <SwiperSlide>
                 <Link
                   to="cast"
-                  className="flex gap-2 mt-[120px] justify-center items-end"
+                  className="flex gap-2 mt-[120px] justify-center items-end hover:font-semibold"
                 >
                   <span className="text-white">View More</span>
                   <svg

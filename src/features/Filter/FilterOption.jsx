@@ -21,6 +21,7 @@ function FilterOption({
   function handleFilter() {
     const [min, max] = rangeValue;
     setFilter(`${language}${rangeValue}`);
+    searchParams.set("page", 1);
     searchParams.set("language", language);
     searchParams.set("release-range", `${min}-${max}`);
     setSearchParams(searchParams);
@@ -31,7 +32,7 @@ function FilterOption({
       <div className="flex gap-2">
         <button
           onClick={() => setShowFilter((show) => !show)}
-          className="mb-3 p-2 w-[20%] flex justify-center items-center cursor-pointer rounded-[6px] font-semibold text-black bg-[#ffffff]"
+          className="mb-3 p-2 w-[20%] flex justify-center items-center cursor-pointer rounded-[6px] font-semibold text-black bg-[#ffffff] transition-all ease-in-out duration-200 hover:bg-[#fffffff2]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -77,11 +78,11 @@ function FilterOption({
       </div>
 
       {showFilter && (
-        <div className="flex items-start  h-40 mb-10">
+        <div className="flex items-start h-40 mb-10 w-[85%]">
           <ReleaseRange rangeValue={rangeValue} setRangeValue={setRangeValue} />
           <LanguageFilter setLanguage={setLanguage} />
           <button
-            className="py-[4px] px-[8px] border rounded-[4px] cursor-pointer bg-[#F5C51C] text-black font-semibold"
+            className="py-[4px] px-[8px] border rounded-[4px] cursor-pointer bg-[#F5C51C] text-black font-semibold transition-all ease-in-out duration-200 hover:bg-[#f5c61cef]"
             onClick={handleFilter}
           >
             Filter

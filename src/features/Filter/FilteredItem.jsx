@@ -15,7 +15,11 @@ function FilteredItem({ data }) {
           className="flex flex-col items-center"
         >
           <img
-            src={`${BASE_IMAGE_URL}${item.poster_path}`}
+            src={
+              item.poster_path
+                ? `${BASE_IMAGE_URL}${item.poster_path}`
+                : "https://placehold.co/268x403?text=No+Image&font=opensans"
+            }
             className="w-[300px] rounded-[6px]"
           />
           <span className="mt-1 font-semibold">{item.title || item.name}</span>

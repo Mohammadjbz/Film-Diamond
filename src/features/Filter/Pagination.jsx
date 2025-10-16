@@ -1,6 +1,9 @@
 import ReactPaginate from "react-paginate";
 import { useSearchParams } from "react-router-dom";
 
+const hoverStyle =
+  "transition-all ease-in-out diration-500 hover:bg-[#3d3b3b67]";
+
 function Pagination({ totalPages, setCurrentPage }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -26,10 +29,10 @@ function Pagination({ totalPages, setCurrentPage }) {
       previousLabel="< Previous"
       renderOnZeroPageCount={null}
       containerClassName="flex gap-2 justify-center mt-8 mb-10"
-      pageClassName="px-3 py-1 border rounded cursor-pointer"
-      activeClassName="bg-blue-500 text-white"
-      previousClassName="px-3 py-1 border rounded cursor-pointer"
-      nextClassName="px-3 py-1 border rounded cursor-pointer"
+      pageClassName={`px-3 py-1 border border-2 rounded cursor-pointer ${hoverStyle}`}
+      activeClassName="bg-[#ffc800] px-[14px] text-white border-none hover:bg-[#F5C51C]"
+      previousClassName={`px-3 py-1 border rounded cursor-pointer ${hoverStyle}`}
+      nextClassName={`px-3 py-1 border rounded cursor-pointer ${hoverStyle}`}
       breakClassName="px-3 py-1"
     />
   );

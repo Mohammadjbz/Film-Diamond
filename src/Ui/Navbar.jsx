@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import CollectionList from "../features/Collection/CollectionList";
 import { useState } from "react";
 
@@ -9,17 +9,17 @@ function Navbar() {
 
   return (
     <div className="flex justify-between mt-[20px]  w-4/5">
-      <div className="flex items-center">
+      <Link to="/" className="flex items-center">
         <span className="bg-[#F5C51C] font-bold py-[3px] px-[12px] rounded-[0.25rem]">
           GOLD
         </span>
         <span className=" text-[#F5C51C] py-[3px] px-[8px]">MOVIE</span>
-      </div>
+      </Link>
 
       <div className="flex items-center text-white">
         <ul className="flex gap-[3.2em] items-center">
           <li>
-            <NavLink to="/">New Movie</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li
             className="relative"

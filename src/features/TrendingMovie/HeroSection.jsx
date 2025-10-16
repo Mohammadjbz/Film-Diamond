@@ -10,7 +10,7 @@ function HeroSection({ activeMovie, isTimeLoading, time }) {
     ? calculateLength(activeMovie?.title)
     : "small";
 
-  const baseStyle = "font-bold leading-14 text-[#F7F7F7]";
+  const baseStyle = "font-bold leading-12 text-[#F7F7F7]";
 
   const titleStyle =
     titleLength === "long" ? "w-[100%]  text-4xl " : " w-[70%]  text-5xl ";
@@ -81,13 +81,14 @@ function HeroSection({ activeMovie, isTimeLoading, time }) {
               borderColor="border-white"
               border="border"
               txtColor="text-white"
+              hoverStyle="hover:bg-[#44434161] transition-all ease-in-out diration-100"
             >
               watch trailer
             </Button>
           </Link>
 
           <Link to={`/movie/detail/${activeMovie?.id}`}>
-            <Button bgColor="bg-[#F5C61C]">
+            <Button bgColor="bg-[#F5C61C]" hoverStyle="hover:bg-[#ffc800] transition-all ease-in-out diration-100">
               <svg
                 width="13"
                 height="18"

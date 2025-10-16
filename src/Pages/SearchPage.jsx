@@ -3,17 +3,28 @@ import { useQuery } from "@tanstack/react-query";
 import getSearchData from "../services/apiSearch";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 import { BASE_IMAGE_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function SearchPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState("all");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(searchParams.get("query") || "");
+  const [value, setValue] = useState(searchParams.get("query") || "");
   const [category, setCategory] = useState("all");
   const inputRef = useRef(null);
 
   useEffect(function () {
     inputRef.current.focus();
   }, []);
+
+  useEffect(
+    function () {
+      if (!query) return;
+      searchParams.set("query", query);
+      setSearchParams(searchParams);
+    },
+    [query, searchParams, setSearchParams]
+  );
 
   function handleSearch() {
     const value = inputRef.current.value.trim();
@@ -49,6 +60,8 @@ function SearchPage() {
       <div className="relative mt-8">
         <input
           type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
           ref={inputRef}
           placeholder="Search for a movie, tv show, person ..."
           className="w-[100%] h-[35px] pl-3 text-white border border-[#d6dad7] rounded-[12px] placeholder-[#ececec] focus:outline-none focus:ring-1 focus:ring-[#ffffff50]"
@@ -141,9 +154,13 @@ function SearchPage() {
                 key={item.id}
               >
                 <img
-                  src={item.poster_path || item.profile_path ?`${BASE_IMAGE_URL}${
+                  src={
                     item.poster_path || item.profile_path
-                  }`:"https://placehold.co/268x403?text=No+Image&font=opensans"}
+                      ? `${BASE_IMAGE_URL}${
+                          item.poster_path || item.profile_path
+                        }`
+                      : "https://placehold.co/268x403?text=No+Image&font=opensans"
+                  }
                   className="rounded-tl-[8px] rounded-tr-[8px] border-b-2 border-[#e2b10e]"
                 />
                 <div className="bg-[#1b1a1a] rounded-bl-[8px] rounded-br-[8px] flex flex-col justify-center h-[55px] overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">

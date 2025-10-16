@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+const buttonStyle = "hover:text-[#F5C51C] transition-all ease-in-out duration-200 cursor-pointer";
+
 function SortingFiltered({ setSort }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSortList, setShowSortList] = useState(false);
@@ -27,10 +29,10 @@ function SortingFiltered({ setSort }) {
   }
 
   return (
-    <div className="min-w-[25%] relative">
+    <div className="min-w-[25%] relative pl-4">
       <button
         onClick={() => setShowSortList((prev) => !prev)}
-        className="flex items-center gap-1 p-2 rounded-[6px] bg-[#312e2e]"
+        className="flex items-center cursor-pointer gap-1 p-2 rounded-[6px] bg-[#312e2e] transition-all ease-in-out duration-100 hover:bg-[#3b3939]"
       >
         <span>Sorting By</span>
 
@@ -52,22 +54,38 @@ function SortingFiltered({ setSort }) {
       {showSortList && (
         <ul className="bg-[#242121e6] rounded-[8px] absolute p-3 text-left">
           <li className="mb-1">
-            <button data-sort="popularity.desc" onClick={handleClick}>
+            <button
+              data-sort="popularity.desc"
+              onClick={handleClick}
+              className={buttonStyle}
+            >
               Popularity Descending
             </button>
           </li>
           <li className="mb-1">
-            <button data-sort="popularity.asc" onClick={handleClick}>
+            <button
+              data-sort="popularity.asc"
+              onClick={handleClick}
+              className={buttonStyle}
+            >
               Popularity Ascending
             </button>
           </li>
           <li className="mb-1">
-            <button data-sort="vote_average.desc" onClick={handleClick}>
+            <button
+              data-sort="vote_average.desc"
+              onClick={handleClick}
+              className={buttonStyle}
+            >
               Rating Descending
             </button>
           </li>
           <li className="mb-1">
-            <button data-sort="vote_average.asc" onClick={handleClick}>
+            <button
+              data-sort="vote_average.asc"
+              onClick={handleClick}
+              className={buttonStyle}
+            >
               Rating Ascending
             </button>
           </li>
@@ -79,6 +97,7 @@ function SortingFiltered({ setSort }) {
                   : "primary_release_date.desc"
               }
               onClick={handleClick}
+              className={buttonStyle}
             >
               Release Date Descending
             </button>
@@ -91,6 +110,7 @@ function SortingFiltered({ setSort }) {
                   : "primary_release_date.asc"
               }
               onClick={handleClick}
+              className={buttonStyle}
             >
               Release Date Ascending
             </button>

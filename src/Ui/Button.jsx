@@ -4,10 +4,11 @@ function Button({
   borderColor,
   border = "",
   txtColor = "text-black",
+  hoverStyle = "",
 }) {
   return (
     <button
-      className={`flex items-center cursor-pointer py-[14px] px-[32px] gap-[12px] rounded-[8px] text-[18px] ${border} ${borderColor} ${txtColor} ${bgColor}`}
+      className={`flex items-center cursor-pointer py-[14px] px-[32px] gap-[12px] rounded-[8px] text-[18px] ${border} ${borderColor} ${txtColor} ${bgColor} ${hoverStyle}`}
     >
       {children}
     </button>
