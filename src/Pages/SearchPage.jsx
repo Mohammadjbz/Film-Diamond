@@ -43,6 +43,8 @@ function SearchPage() {
     enabled: !!query,
   });
 
+  console.log(data)
+
   const filteredData =
     filter === "all"
       ? data
@@ -146,30 +148,34 @@ function SearchPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            {filteredData?.map((item) => (
-              <Link
-                to={createRoute(item.media_type, item.id)}
-                className="text-white  rounded-[10px] text-center border border-2 border-[#e2b10e]"
-                key={item.id}
-              >
-                <img
-                  src={
-                    item.poster_path || item.profile_path
-                      ? `${BASE_IMAGE_URL}${
-                          item.poster_path || item.profile_path
-                        }`
-                      : "https://placehold.co/268x403?text=No+Image&font=opensans"
-                  }
-                  className="rounded-tl-[8px] rounded-tr-[8px] border-b-2 border-[#e2b10e]"
-                />
-                <div className="bg-[#1b1a1a] rounded-bl-[8px] rounded-br-[8px] flex flex-col justify-center h-[55px] overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
-                  <span className="text-[#e4dfd0] font-semibold">
-                    {item.title || item.name}
-                  </span>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-3 gap-4 mb-10">
+            {filteredData.length !== 0 ? (
+              filteredData?.map((item) => (
+                <Link
+                  to={createRoute(item.media_type, item.id)}
+                  className="text-white  rounded-[10px] text-center border border-2 border-[#e2b10e]"
+                  key={item.id}
+                >
+                  <img
+                    src={
+                      item.poster_path || item.profile_path
+                        ? `${BASE_IMAGE_URL}${
+                            item.poster_path || item.profile_path
+                          }`
+                        : "https://placehold.co/268x403?text=No+Image&font=opensans"
+                    }
+                    className="rounded-tl-[8px] rounded-tr-[8px] border-b-2 border-[#e2b10e]"
+                  />
+                  <div className="bg-[#1b1a1a] rounded-bl-[8px] rounded-br-[8px] flex flex-col justify-center h-[55px] overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
+                    <span className="text-[#e4dfd0] font-semibold">
+                      {item.title || item.name}
+                    </span>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <span className="text-white text-2xl font-bold">No results found!</span>
+            )}
           </div>
         </div>
       )}
