@@ -26,7 +26,9 @@ function SearchPage() {
     [query, searchParams, setSearchParams]
   );
 
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
+
     const value = inputRef.current.value.trim();
     if (!value) return;
     setQuery(value);
@@ -43,7 +45,7 @@ function SearchPage() {
     enabled: !!query,
   });
 
-  console.log(data)
+  console.log(data);
 
   const filteredData =
     filter === "all"
@@ -59,7 +61,7 @@ function SearchPage() {
 
   return (
     <div className="w-[80%] flex flex-col min-h-screen">
-      <div className="relative mt-8">
+      <form className="relative mt-8" onSubmit={handleSearch}>
         <input
           type="text"
           value={value}
@@ -79,7 +81,7 @@ function SearchPage() {
         >
           Search
         </button>
-      </div>
+      </form>
 
       {isLoading ? (
         <FullPageSpinner />
@@ -92,7 +94,7 @@ function SearchPage() {
               className={`w-[7%] hover:text-black hover:font-semibold ${
                 category === "all"
                   ? "hover:bg-yellow-400"
-                  : "hover:bg-[#eee5e5df]"
+                  : "hover:bg-[#bdb9b9]"
               }  focus:text-black focus:font-semibold transition-all duration-500 ease-in-out  cursor-pointer rounded-[4px] py-1 ${
                 category === "all"
                   ? "bg-yellow-500 font-semibold text-black"
@@ -107,7 +109,7 @@ function SearchPage() {
               className={`w-[7%] hover:text-black hover:font-semibold  ${
                 category === "movie"
                   ? "hover:bg-yellow-400"
-                  : "hover:bg-[#eee5e5df]"
+                  : "hover:bg-[#bdb9b9]"
               } focus:text-black focus:font-semibold transition-all duration-500 ease-in-out cursor-pointer rounded-[4px] py-1 ${
                 category === "movie"
                   ? "bg-yellow-500 font-semibold text-black"
@@ -120,9 +122,7 @@ function SearchPage() {
               data-category="tv"
               onClick={handleCategory}
               className={`w-[7%] hover:text-black hover:font-semibold ${
-                category === "tv"
-                  ? "hover:bg-yellow-400"
-                  : "hover:bg-[#eee5e5df]"
+                category === "tv" ? "hover:bg-yellow-400" : "hover:bg-[#bdb9b9]"
               } focus:text-black focus:font-semibold transition-all duration-500 ease-in-out  cursor-pointer rounded-[4px] py-1 ${
                 category === "tv"
                   ? "bg-yellow-500 font-semibold text-black"
@@ -137,7 +137,7 @@ function SearchPage() {
               className={`w-[7%] hover:text-black hover:font-semibold ${
                 category === "person"
                   ? "hover:bg-yellow-400"
-                  : "hover:bg-[#eee5e5df]"
+                  : "hover:bg-[#bdb9b9]"
               } focus:text-black focus:font-semibold transition-all duration-500 ease-in-out  cursor-pointer rounded-[4px] py-1 ${
                 category === "person"
                   ? "bg-yellow-500 font-semibold text-black"
@@ -149,7 +149,7 @@ function SearchPage() {
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-10">
-            {filteredData.length !== 0 ? (
+            {filteredData?.length !== 0 ? (
               filteredData?.map((item) => (
                 <Link
                   to={createRoute(item.media_type, item.id)}
@@ -174,7 +174,9 @@ function SearchPage() {
                 </Link>
               ))
             ) : (
-              <span className="text-white text-2xl font-bold">No results found!</span>
+              <span className="text-white text-2xl font-bold">
+                No results found!
+              </span>
             )}
           </div>
         </div>
