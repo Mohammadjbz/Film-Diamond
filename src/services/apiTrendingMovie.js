@@ -12,10 +12,16 @@ function getTrendingMovies() {
     "https://api.themoviedb.org/3/trending/movie/day?language=en-US",
     options
   )
-    .then((res) => res.json())
-    .catch((err) => {
-      console.error(err);
-      return null;
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          `Failed to fetch trending movies (status ${res.status})`
+        );
+      }
+      return res.json();
+    })
+    .catch(() => {
+      throw new Error("Failed to fetch trending movies");
     });
 
   return data;
@@ -30,7 +36,7 @@ export function getTimeMovie(movieId) {
   )
     .then((res) => res.json())
     .then((res) => res.runtime)
-    .catch((err) => console.error(err));
+    .catch(() => null);
 
   return data;
 }

@@ -4,12 +4,13 @@ import SliderTrendingMovie from "../features/TrendingMovie/SliderTrendingMovie";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 import { getTimeMovie } from "../services/apiTrendingMovie";
 import { useTrendingMovies } from "../hooks/useTrendingMovies";
+import ErrorMessage from "../Ui/ErrorMessage";
 
 function HomePage({ activeIndex, setActiveIndex }) {
   const {
     data,
     isLoading: isTrendingLoading,
-    error,
+    isError,
   } = useTrendingMovies(activeIndex);
 
   const activeMovieId = data?.results[activeIndex]?.id;
@@ -26,12 +27,18 @@ function HomePage({ activeIndex, setActiveIndex }) {
 
   return (
     <>
-      <HeroSection
-        activeMovie={activeMovie}
-        isTimeLoading={isTimeLoading}
-        time={timeMovie}
-      />
-      <SliderTrendingMovie data={data} setActiveIndex={setActiveIndex} />
+      {isError ? (
+        <ErrorMessage text="Something went wrong! Please try again later." />
+      ) : (
+        <>
+          <HeroSection
+            activeMovie={activeMovie}
+            isTimeLoading={isTimeLoading}
+            time={timeMovie}
+          />
+          <SliderTrendingMovie data={data} setActiveIndex={setActiveIndex} />
+        </>
+      )}
     </>
   );
 }

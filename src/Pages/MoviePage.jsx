@@ -2,6 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import { getMovies } from "../services/apiMovies";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 import Slider from "../Ui/Slider";
+import ErrorMessage from "../Ui/ErrorMessage";
 
 const queryKeys = ["Now Playing", "Popular", "Top Rated", "Upcoming"];
 
@@ -19,13 +20,16 @@ function MoviePage() {
   const isSuccess = queryResults.every((result) => result.isSuccess);
   const isError = queryResults.some((result) => result.isError);
 
-  // console.log(queryResults);
+  if (isLoading) return <FullPageSpinner />;
 
   if (isError) {
-    return <div>An error occurred while fetching movies.</div>;
+    return (
+      <ErrorMessage
+        text="An error occurred while fetching movies!"
+        redirect={true}
+      />
+    );
   }
-
-  if (isLoading) return <FullPageSpinner />;
 
   if (isSuccess)
     return (

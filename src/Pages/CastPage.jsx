@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { BASE_IMAGE_URL } from "../utils/constants";
 import FullPageSpinner from "../Ui/FullPageSpinner";
 import PlaceHolderImage from "../Ui/PlaceHolderImage";
+import ErrorMessage from "../Ui/ErrorMessage";
 
 function CastPage({ type }) {
   const { movieSeriesId } = useParams();
@@ -18,15 +19,23 @@ function CastPage({ type }) {
     queryFn: () => getCredits(movieSeriesId, type),
   });
 
-  console.log(movieSeriesId);
-
   if (isLoadingCreditsData) return <FullPageSpinner />;
+
+  if (isErrorCreditsData)
+    return (
+      <ErrorMessage
+        text="An error occurred while fetching Casts!"
+        redirect={true}
+      />
+    );
 
   if (isSuccessCreditsData)
     return (
       <div className="flex w-[80%] gap-5 mt-10 mb-5 bg-[#252222] rounded-[6px] py-2 border-3 border-double border-[#F5C51C]">
         <div className="flex flex-col gap-3 ml-4">
-          <h3 className="font-bold text-xl tracking-wider text-[#ffffffef]">Cast</h3>
+          <h3 className="font-bold text-xl tracking-wider text-[#ffffffef]">
+            Cast
+          </h3>
           {creditsData?.cast.map((item) => (
             <Link
               key={item.id}
@@ -51,7 +60,9 @@ function CastPage({ type }) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h3 className="font-bold text-xl tracking-wider text-[#ffffffef]">Crew</h3>
+          <h3 className="font-bold text-xl tracking-wider text-[#ffffffef]">
+            Crew
+          </h3>
           {creditsData?.crew.map((item) => (
             <Link
               to={`/person/${item.id}`}

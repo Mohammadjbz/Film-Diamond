@@ -2,6 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import { getSeries } from "../services/apiSeries";
 import Slider from "../Ui/Slider";
 import FullPageSpinner from "../Ui/FullPageSpinner";
+import ErrorMessage from "../Ui/ErrorMessage";
 
 const queryKeys = ["Airing Today", "On The Air", "Popular", "Top Rated"];
 
@@ -21,11 +22,12 @@ function SeriesPage() {
 
  
 
-  if (isError) {
-    return <div>An error occurred while fetching movies.</div>;
-  }
-
+  
   if (isLoading) return <FullPageSpinner />;
+
+  if (isError) {
+    return <ErrorMessage text="An error occurred while fetching Series Page" redirect={true}/>
+  }
 
   if (isSuccess)
     return (

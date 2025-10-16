@@ -66,7 +66,7 @@ function SliderTrendingMovie({ data, setActiveIndex }) {
         centeredSlides={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {data.results.map((item) => (
+        {data?.results.map((item) => (
           <SwiperSlide key={item.id}>
             <Link to={`movie/detail/${item.id}`}>
               <img

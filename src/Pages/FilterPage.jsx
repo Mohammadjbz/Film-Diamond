@@ -8,6 +8,7 @@ import Pagination from "../features/Filter/Pagination";
 import SortingFiltered from "../features/Filter/SortingFiltered";
 import FilterOption from "../features/Filter/FilterOption";
 import convertSortUrl from "../helpers/convertSortUrl";
+import ErrorMessage from "../Ui/ErrorMessage";
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -182,7 +183,7 @@ function FilterPage() {
     queryKey: ["filter", type, genre, currentPage, sort, filter],
     queryFn: () =>
       getFilteredData(type, genre, currentPage, sort, language, rangeValue),
-     refetchOnWindowFocus: false,
+    refetchOnWindowFocus: false,
   });
 
   const totalPages = data?.total_pages || 0;
@@ -191,6 +192,14 @@ function FilterPage() {
   );
 
   console.log(GENERE_NAMES[type]);
+
+  if (isError)
+    return (
+      <ErrorMessage
+        text="An error occurred while fetching Data"
+        redirect={true}
+      />
+    );
 
   return (
     <div className="text-white w-[80%] ">

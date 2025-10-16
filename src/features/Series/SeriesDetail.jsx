@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "../../Ui/detailSliderStyle.css";
 import PlaceHolderImage from "../../Ui/PlaceHolderImage";
+import ErrorMessage from "../../Ui/ErrorMessage";
 
 function SeriesDetail() {
   const { movieSeriesId } = useParams();
@@ -52,7 +53,15 @@ function SeriesDetail() {
 
   console.log(seriesData);
 
-  if (isLoadingSeriesData) return <FullPageSpinner />;
+  if (isLoadingSeriesData || isLoadingCreditsData) return <FullPageSpinner />;
+
+  if (isErrorSeriesData)
+    return (
+      <ErrorMessage
+        text="An error occurred while fetching detail!"
+        redirect={true}
+      />
+    );
 
   if (isSuccessSeriesData && isSuccessCreditsData)
     return (
@@ -175,12 +184,16 @@ function SeriesDetail() {
                 {seriesData.tagline}
               </div>
 
-              <h3 className="font-bold text-[1.1rem] text-[white] mt-5">
-                Overview
-              </h3>
-              <div className="text-[white] mt-2 h-70 overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
-                <span>{seriesData.overview}</span>
-              </div>
+              {seriesData.overview && (
+                <>
+                  <h3 className="font-bold text-[1.1rem] text-[white] mt-5">
+                    Overview
+                  </h3>
+                  <div className="text-[white] mt-2 h-70 overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
+                    <span>{seriesData.overview}</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

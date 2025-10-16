@@ -5,6 +5,7 @@ import FullPageSpinner from "../Ui/FullPageSpinner";
 import { BASE_IMAGE_URL } from "../utils/constants";
 import getBestEffects from "../services/apiKnownFor";
 import "swiper/css";
+import ErrorMessage from "../Ui/ErrorMessage";
 
 function PersonDetailPage() {
   const { personId } = useParams();
@@ -13,6 +14,7 @@ function PersonDetailPage() {
     data: personData,
     isLoading: isLoadingPersonData,
     isSuccess: isSuccessPersonData,
+    isError: isErrorPersonData,
   } = useQuery({
     queryKey: ["personDetail", personId],
     queryFn: () => getPersonDetail(personId),
@@ -23,7 +25,7 @@ function PersonDetailPage() {
     isLoading: isLoadingEffectsData,
     isSuccess: isSuccessEffectsData,
   } = useQuery({
-    queryKey: ["bestEffects",personId],
+    queryKey: ["bestEffects", personId],
     queryFn: () => getBestEffects(personId),
   });
 
@@ -31,9 +33,17 @@ function PersonDetailPage() {
     .sort((a, b) => b.popularity - a.popularity)
     .slice(0, 6);
 
-  console.log(personData);
+  
 
-  if (isLoadingPersonData && isLoadingEffectsData) return <FullPageSpinner />;
+  if (isLoadingPersonData || isLoadingEffectsData) return <FullPageSpinner />;
+
+  if (isErrorPersonData)
+    return (
+      <ErrorMessage
+        text="An error occurred while fetching Person detail!"
+        redirect={true}
+      />
+    );
 
   if (isSuccessPersonData && isSuccessEffectsData)
     return (
